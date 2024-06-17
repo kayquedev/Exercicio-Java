@@ -6,4 +6,4 @@ if (!$secretPassword) {
     exit(1);
 }
 
-echo "Sunha senha secreta é $secretPassword\n";
+echo "Sua senha secreta é $secretPassword\n";
