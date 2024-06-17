@@ -1,0 +1,24 @@
+name: Run App with Secret Password
+
+on: push
+
+jobs:
+  run-app:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Add Mask
+        run: echo "::add-mask::${{ secrets.SECRET_PASSWORD }}"
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+
+      - name: Run the app
+        env:
+          SECRET_PASSWORD: ${{ secrets.SECRET_PASSWORD }}
+        run: php app.php
+
