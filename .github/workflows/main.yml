@@ -1,0 +1,23 @@
+name: Rodar App com Senha Secreta
+
+on: push
+
+jobs:
+  run-app:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checar Código
+        uses: actions/checkout@v2
+
+      - name: Adiciona Máscara
+        run: echo "::add-mask::${{ secrets.SECRET_PASSWORD }}"
+
+      - name: Configurar Ambiente PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+
+      - name: Executar
+        env:
+          SECRET_PASSWORD: ${{ secrets.SECRET_PASSWORD }}
+        run: php app.php
