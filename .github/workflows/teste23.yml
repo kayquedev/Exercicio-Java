@@ -1,0 +1,16 @@
+name: Print Secret
+
+on: [push]
+
+jobs:
+  print-secret:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Print Secret Value
+        run: |
+          echo "O valor do segredo é ${{ secrets.SECRET_PASSWORD }}"
+        env:
+          SECRET_PASSWORD: ${{ secrets.SECRET_PASSWORD }}
